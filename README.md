@@ -1,0 +1,3 @@
+# Gomoku Game
+
+## The game is currently in development...
