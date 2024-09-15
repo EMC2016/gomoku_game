@@ -1,31 +1,76 @@
 <!doctype html>
 <html lang="en-US">
   <head>
+    <link href="styles/style.css" rel="stylesheet" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gomoku Game</title>
     <style>
       body {
         background-image: url('images/background_0.jpg');
-        background-size: cover;      
-        background-position: center; 
-        background-repeat: no-repeat; 
-        margin: 0;                  
-        height: 100vh;              
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        font-family: 'Open Sans', sans-serif;
+        color: rgb(12, 70, 104);
+        padding-top: 150px; /* Add space for headings */
       }
-    </style>
-  </head>
-  <!-- 4 heading levels: -->
-    <h1>Gomoku Game</h1>
-    <h2>Five in a Row</h2>
-    <h3><a href="https://en.wikipedia.org/wiki/Gomoku">Gomoku</a> is a classic board game that is both simple and enjoyable—it's one of my favorites! </h3>
-        
-    <h4>The objective is to be the first to form an unbroken line of five stones, either horizontally, vertically, or diagonally. </h4>
-        
-    <h4>Have fun and good luck!</h4>
-    
-  <body>
-    <!--<p class="test paragraph">My cat is <strong>very</strong> grumpy.</p>-->
 
+      .chessboard-container {
+        width: 100%;
+        max-width: 1000px;
+        height: 800px;
+        background-image: url('images/chessboard.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding-top: 0;
+        position: relative;
+        z-index: 1;
+        margin: 0.5 0;
+        margin-top: px;
+      }
+
+     
+
+      
+      button:hover {
+        background-color: #90ae91;
+      }
+      button {
+        position: absolute;   /* Enables absolute positioning */
+        top: 20px;            /* Distance from the top of the page */
+        right: 20px;          /* Distance from the right edge of the page */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #1c441d;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
+
+
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+  </head>
+  
+  <body>
+    
+    <h1>Gomoku Game </h1>
+    <h4><strong></strong><a href="https://en.wikipedia.org/wiki/Gomoku" style="color: rgb(12, 70, 104);; text-decoration: none;">Gomoku</a></strong> is a classic board game that is both simple and enjoyable—it's one of my favorites! </h4>
+    <h4>The objective is to be the first to form an unbroken line of five stones, either horizontally, vertically, or diagonally. Have fun!</h4>
+    <button>Log In</button>
+    
+    <div class="chessboard-container" id="chessboard"></div>
+    <p id="turnIndicator">Current Turn: <span id="currentPlayer">Black</span></p></div>
+    <script src="scripts/main.js"></script>
   </body>
 </html>

@@ -1,0 +1,73 @@
+html {
+  font-size: 20px; /* px means "pixels": the base font size is now 10 pixels high */
+  font-family: "Open Sans", sans-serif; /* this should be the rest of the output you got from Google Fonts */
+}
+
+h1 {
+  font-size: 50px;
+  text-align: center;
+  margin: 0 0; /* Adjusts top and bottom margins to be smaller */
+  padding: 0;    
+  margin-top: -140px; 
+}
+
+h4 {
+  font-size: 20px;
+  text-align: center;
+  margin: 1px 0; /* Adjusts top and bottom margins to be smaller */
+  padding: 0;  
+  margin-top: -3px;  
+  margin-left: -50px;
+}
+
+
+svg {
+  width: 100%;  /* Full width of the container */
+  height: auto; /* Adjust height automatically to preserve aspect ratio */
+}
+
+body {
+  background-image: url('images/background_0.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  color: rgb(12, 70, 104);
+  padding-top: 150px; /* Add space for headings */
+}
+
+.chessboard-container {
+  width: 100%;
+  max-width: 1000px;
+  height: 800px;
+  background-image: url('images/chessboard.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 0;
+  position: relative;
+  z-index: 1;
+  margin: 0.5 0;
+  margin-top: 1px;
+}
+
+.stone {
+  position: absolute;
+  width: 30px; /* Set the size of the stones */
+  height: 30px;
+  transform: translate(-50%, -50%); /* Center the stone */
+}
+
+/* Optional: Make it visually clear whose turn it is */
+#turnIndicator {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+
