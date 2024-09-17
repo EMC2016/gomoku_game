@@ -35,7 +35,7 @@ function setUserName() {
 
 
   // Variables to track game state
-let currentPlayer = 'white'; // Start with black
+let currentPlayer = 'white'; // Start with white
 let boardState = []; // Store the state of the board
 
 // Select necessary DOM elements
@@ -95,7 +95,7 @@ function placeStone(gridX, gridY) {
 
 // Function to toggle the player's turn
 function togglePlayer() {
-    currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
+    currentPlayer = currentPlayer === 'white' ? 'white' : 'black';
     currentPlayerElement.textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
 }
 
