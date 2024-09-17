@@ -44,7 +44,7 @@ const currentPlayerElement = document.getElementById('currentPlayer');
 
 // Initialize board state
 const boardSize = 19;
-const gridSpacing = (chessboard.clientWidth -272) / (boardSize-1) ;
+const gridSpacing = (chessboard.clientWidth -270.5) / (boardSize-1) ;
 for (let i = 0; i < boardSize; i++) {
     boardState[i] = Array(boardSize).fill(null);
 }
@@ -66,8 +66,8 @@ chessboard.addEventListener('click', (event) => {
 
    
     // Find the nearest grid position
-    const gridX = Math.floor(x / gridSpacing);
-    const gridY = Math.floor(y / gridSpacing);
+    const gridX = Math.round(x / gridSpacing);
+    const gridY = Math.round(y / gridSpacing);
     console.log('x:', x);
     console.log('y:', y);
     console.log('gridX:', gridX);
