@@ -44,7 +44,7 @@ const currentPlayerElement = document.getElementById('currentPlayer');
 
 // Initialize board state
 const boardSize = 19;
-const gridSpacing = chessboard.clientWidth / boardSize;
+const gridSpacing = (chessboard.clientWidth -272) / (boardSize-1) ;
 for (let i = 0; i < boardSize; i++) {
     boardState[i] = Array(boardSize).fill(null);
 }
@@ -53,17 +53,25 @@ for (let i = 0; i < boardSize; i++) {
 //**RECALCULATE THE POSITION */
 chessboard.addEventListener('click', (event) => {
     const rect = chessboard.getBoundingClientRect();
-    const x = event.clientX - rect.left - 63.77*800/2326.7715;
-    const y = event.clientY - rect.top - 63.77*800/2326.7715;
+    const x = event.clientX - rect.left-135.5;
+    const y = event.clientY - rect.top-34;
     console.log('rect.left:', rect.left);
+    console.log('rect.right:', rect.right);
     console.log('rect.top:', rect.top); 
+    //console.log('rect.down:', rect.down); 
     console.log('gridSpacing:', gridSpacing);
-    console.log('totalWidth:', chessboard.clientWidth);
+    //console.log('totalWidth:', chessboard.clientWidth);
+    console.log('event.clientX:', event.clientX);
+    console.log('event.clientY:', event.clientY);
+
    
     // Find the nearest grid position
     const gridX = Math.floor(x / gridSpacing);
     const gridY = Math.floor(y / gridSpacing);
-
+    console.log('x:', x);
+    console.log('y:', y);
+    console.log('gridX:', gridX);
+    console.log('gridY:', gridY);
     // Check if the position is already occupied
     if (boardState[gridX][gridY] === null) {
         placeStone(gridX, gridY);
@@ -76,8 +84,8 @@ function placeStone(gridX, gridY) {
     const stone = document.createElement('img');
     stone.classList.add('stone');
     stone.src = currentPlayer === 'white' ? 'images/whitestone.png' : 'images/blackstone.png';
-    stone.style.left = `${(gridX + 0.5) * gridSpacing}px`;
-    stone.style.top = `${(gridY + 0.5) * gridSpacing}px`;
+    stone.style.left = `${(gridX) * gridSpacing + 135.5}px`;
+    stone.style.top = `${(gridY) * gridSpacing + 34}px`;
 
     chessboard.appendChild(stone);
 
