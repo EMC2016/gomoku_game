@@ -1,4 +1,6 @@
-# Gomoku Game - Two Player Edition
+<img src="images/chessboard_1.webp" alt="Title Img" width="1000">
+
+
 
 Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board game where two players compete to be the first to get five of their stones in a row on a 19x19 grid. 
 
