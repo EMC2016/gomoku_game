@@ -2,7 +2,7 @@
 
 Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board game where two players compete to be the first to get five of their stones in a row on a 19x19 grid. 
 
----
+
 
 ## Table of Contents
 
@@ -18,7 +18,6 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 - [Roadmap](#roadmap)
 
 
----
 
 ## Features
 
@@ -30,13 +29,13 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 - **Responsive Design**: Adjusts to different screen sizes. 
 - **Cross-Platform Compatibility**: Runs on any modern web browser.
 
----
+
 <!--
 ## Demo
 
 *Note: Insert link to a live demo or a video if available.*
 -->
----
+
 
 ## Installation
 
@@ -88,7 +87,7 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 
      Then open your browser and navigate to `http://localhost:8080`.
 -->
----
+
 
 ## How to Play
 
@@ -104,7 +103,6 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 - **Restart Game**: Click the 'Restart' button to start a new game.
 -->
 
----
 
 ## Game Rules
 
@@ -118,7 +116,6 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 - **Draw**:
   - If all cells are filled without any player achieving five in a row, the game is a draw.
 
----
 <!--
 ## Screenshots
 
@@ -159,19 +156,15 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 -->
 - **Version Control**: Git
 
----
 
 ## License
 
 This project is licensed under the MIT License.
 
----
 
 ## Authors
 
 - **Emma Chen** - *Developer* - [YourGitHubUsername](https://github.com/EMC2016)
-
----
 
 
 
@@ -183,7 +176,6 @@ This project is licensed under the MIT License.
 - [ ] Improve the graphical interface with enhanced visuals.
 - [ ] Support for mobile devices via responsive design.
 
----
 
 
 Thank you for checking out our Gomoku game! We hope you enjoy playing it as much as we enjoyed creating it. Your feedback and contributions are greatly appreciated.
