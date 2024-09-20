@@ -75,7 +75,12 @@ chessboard.addEventListener('click', (event) => {
     // Check if the position is already occupied
     if (boardState[gridX][gridY] === null) {
         placeStone(gridX, gridY);
-        togglePlayer();
+        if(!checkWinner(gridX,gridY)){
+          togglePlayer();
+        }
+        
+    }else{
+        alert("This grid is occupied! Try again.");
     }
 });
 
@@ -91,12 +96,116 @@ function placeStone(gridX, gridY) {
 
     // Update the board state
     boardState[gridX][gridY] = currentPlayer;
+    
 }
 
 // Function to toggle the player's turn
 function togglePlayer() {
-    currentPlayer = currentPlayer === 'white' ? 'white' : 'black';
+    currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
     currentPlayerElement.textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
 }
 
   
+// Function to check the current player win or not
+function checkWinner(gridX,gridY) {
+  let count = 1;
+  let x = gridX-1;
+  let y = gridY;
+  while(x>=0 && boardState[x][y]==currentPlayer){
+      count++;
+      x--;
+  }
+  x = gridX+1;
+  while(x<boardSize && boardState[x][y]==currentPlayer){
+      count++;
+      x++;
+  }
+
+  if(count == 5){
+    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    setTimeout(function() {
+      alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    }, 200);
+    return true;
+  }
+
+  count = 1;
+  x = gridX;  
+  y = gridY-1;
+  while(y>=0 && boardState[x][y]==currentPlayer){
+    
+      count++;
+      y--;
+    
+  }
+    y = gridY+1;
+  while(y<boardSize && boardState[x][y]==currentPlayer){
+      count++;
+      y++;
+  }
+  if(count == 5){
+    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    setTimeout(function() {
+      alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    }, 200);
+    return true;
+  }
+
+  count = 1;
+  x = gridX-1;  
+  y = gridY-1;
+
+  while(x>=0 && y>=0 && boardState[x][y]==currentPlayer){
+    
+      count++;
+      y--;
+      x--;
+  }
+
+  x = gridX+1;  
+  y = gridY+1;
+  while(x<boardSize && y<boardSize && boardState[x][y]==currentPlayer){
+    
+      count++;
+      y++;
+      x++;
+   
+  }
+  if(count == 5){
+    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    setTimeout(function() {
+      alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    }, 200);
+    return true;
+  }
+
+  count = 1;
+  x = gridX-1;  
+  y = gridY+1;
+
+  while(x>=0 && y<boardSize && boardState[x][y]==currentPlayer){
+   
+      count++;
+      y++;
+      x--;
+    
+  }
+  x = gridX+1;  
+  y = gridY-1;
+  while(x<boardSize && y>=0 && boardState[x][y]==currentPlayer){
+    
+      count++;
+      y--;
+      x++;
+  }
+  if(count == 5){
+    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    setTimeout(function() {
+      alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    }, 200);
+    return true;
+  }
+
+  return false;
+
+}
