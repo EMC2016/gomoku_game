@@ -1,6 +1,6 @@
 
-//const myHeading = document.querySelector("h1");
-//myHeading.textContent = "Gomoku World";
+const myHeading = document.querySelector("h1");
+myHeading.textContent = "Gomoku World";
 
 
 //document.querySelector("html").addEventListener("click", function () {
@@ -20,9 +20,9 @@ myImage.onclick = () => {
 };
 */
 
-let myButton = document.querySelector("button");
+let loginbutton = document.getElementById('login');
 
-myButton.onclick = () => {
+loginbutton.onclick = () => {
     setUserName();
   };
 
@@ -32,10 +32,14 @@ function setUserName() {
     myHeading.textContent = `Gomoku is cool, ${myName}`;
   }
 
-
+let restartbutton = document.getElementById('restart');
+let gameover = false;
+restartbutton.onclick = () =>{
+  restartGame();
+};
 
   // Variables to track game state
-let currentPlayer = 'white'; // Start with white
+let currentPlayer = 'black'; // Start with black
 let boardState = []; // Store the state of the board
 
 // Select necessary DOM elements
@@ -55,25 +59,20 @@ chessboard.addEventListener('click', (event) => {
     const rect = chessboard.getBoundingClientRect();
     const x = event.clientX - rect.left-135.5;
     const y = event.clientY - rect.top-34;
-    console.log('rect.left:', rect.left);
-    console.log('rect.right:', rect.right);
-    console.log('rect.top:', rect.top); 
-    //console.log('rect.down:', rect.down); 
-    console.log('gridSpacing:', gridSpacing);
-    //console.log('totalWidth:', chessboard.clientWidth);
-    console.log('event.clientX:', event.clientX);
-    console.log('event.clientY:', event.clientY);
+    
 
    
     // Find the nearest grid position
     const gridX = Math.round(x / gridSpacing);
     const gridY = Math.round(y / gridSpacing);
-    console.log('x:', x);
-    console.log('y:', y);
-    console.log('gridX:', gridX);
-    console.log('gridY:', gridY);
-    // Check if the position is already occupied
-    if (boardState[gridX][gridY] === null) {
+    
+    // Check if game is over
+    if(gameover){
+      alert("Game is over! Winner is "+currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)+"!");
+      return;
+    }
+     // Check if the position is already occupied
+    if (boardState[gridX][gridY] === null ) {
         placeStone(gridX, gridY);
         if(!checkWinner(gridX,gridY)){
           togglePlayer();
@@ -101,7 +100,7 @@ function placeStone(gridX, gridY) {
 
 // Function to toggle the player's turn
 function togglePlayer() {
-    currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
+    currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
     currentPlayerElement.textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
 }
 
@@ -123,10 +122,11 @@ function checkWinner(gridX,gridY) {
 
   if(count == 5){
     //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
-    return true;
+    return gameover;
   }
 
   count = 1;
@@ -145,10 +145,11 @@ function checkWinner(gridX,gridY) {
   }
   if(count == 5){
     //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
-    return true;
+    return gameover;
   }
 
   count = 1;
@@ -173,10 +174,11 @@ function checkWinner(gridX,gridY) {
   }
   if(count == 5){
     //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
-    return true;
+    return gameover;
   }
 
   count = 1;
@@ -200,12 +202,26 @@ function checkWinner(gridX,gridY) {
   }
   if(count == 5){
     //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
+    gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
-    return true;
+    return gameover;
   }
 
-  return false;
+  return gameover;
+
+}
+
+function restartGame(){
+  gameover = false;
+  currentPlayer = "Black";
+  for (let i = 0; i < boardSize; i++) {
+    boardState[i] = Array(boardSize).fill(null);
+  }
+  document.getElementById('currentPlayer').textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
+
+  const stones = document.querySelectorAll('.stone');
+  stones.forEach(stone => stone.remove());
 
 }

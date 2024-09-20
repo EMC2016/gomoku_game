@@ -34,7 +34,7 @@
         position: relative;
         z-index: 1;
         margin: 0.5 0;
-        margin-top: px;
+        margin-top: -5px;
       }
 
      
@@ -43,7 +43,7 @@
       button:hover {
         background-color: #90ae91;
       }
-      button {
+      #login {
         position: absolute;   /* Enables absolute positioning */
         top: 20px;            /* Distance from the top of the page */
         right: 20px;          /* Distance from the right edge of the page */
@@ -56,6 +56,30 @@
         cursor: pointer;
         }
 
+        #restart {
+        position: absolute;   /* Enables absolute positioning */
+        top: 20px;            /* Distance from the top of the page */
+        right: 120px;          /* Distance from the right edge of the page */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #1c441d;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
+        #turnIndicator {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        margin: 0;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #084573b7;
+        color: white;
+        border-radius: 5px;
+      }
 
 
     </style>
@@ -67,7 +91,8 @@
     <h1>Gomoku Game </h1>
     <h4><strong></strong><a href="https://en.wikipedia.org/wiki/Gomoku" style="color: rgb(12, 70, 104);; text-decoration: none;">Gomoku</a></strong> is a classic board game that is both simple and enjoyable—it's one of my favorites! </h4>
     <h4>The objective is to be the first to form an unbroken line of five stones, either horizontally, vertically, or diagonally. Have fun!</h4>
-    <button>Log In</button>
+    <button id = "login">Log In</button>
+    <button id = "restart">Restart</button>
     
     <div class="chessboard-container" id="chessboard"></div>
     <p id="turnIndicator">Current Turn: <span id="currentPlayer">Black</span></p></div>

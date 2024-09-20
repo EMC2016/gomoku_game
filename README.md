@@ -116,22 +116,23 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 - **Draw**:
   - If all cells are filled without any player achieving five in a row, the game is a draw.
 
-<!--
+
 ## Screenshots
 
-*Include screenshots to showcase the game interface.*
 
-![Game Start Screen](images/game_start.png)
+<img src="images/game_start.png" alt="Game Start Screen" width="800">
+
 *Figure 1: Game start screen.*
 
-![Gameplay Screenshot](images/gameplay.png)
+<img src="images/game_play.png" alt="Mid-game Screen" width="800">
+
 *Figure 2: Mid-game gameplay.*
 
-![Winning Screen](images/winning_screen.png)
+<img src="images/game_win.png" alt="Game Win Screen" width="800">
+
 *Figure 3: Winning sequence highlighted.*
 
----
--->
+
 
 ## Requirements
 
