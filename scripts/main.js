@@ -3,23 +3,6 @@ const myHeading = document.querySelector("h1");
 myHeading.textContent = "Gomoku World";
 
 
-//document.querySelector("html").addEventListener("click", function () {
-//    alert("Ouch! Stop poking me!");
-//  });
-
-/*
-const myImage = document.querySelector("img");
-
-myImage.onclick = () => {
-  const mySrc = myImage.getAttribute("src");
-  if (mySrc === "images/chessboard.jpg") {
-    myImage.setAttribute("src", "images/chessboard_2.jpg");
-  } else {
-    myImage.setAttribute("src", "images/chessboard_1.webp");
-  }
-};
-*/
-
 let loginbutton = document.getElementById('login');
 
 loginbutton.onclick = () => {
@@ -34,9 +17,24 @@ function setUserName() {
 
 let restartbutton = document.getElementById('restart');
 let gameover = false;
+
 restartbutton.onclick = () =>{
   restartGame();
 };
+
+// Set status to initial status, restart the game
+function restartGame(){
+  gameover = false;
+  currentPlayer = "Black";
+  for (let i = 0; i < boardSize; i++) {
+    boardState[i] = Array(boardSize).fill(null);
+  }
+  document.getElementById('currentPlayer').textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
+  
+  const stones = document.querySelectorAll('.stone');
+  stones.forEach(stone => stone.remove());
+
+}
 
   // Variables to track game state
 let currentPlayer = 'black'; // Start with black
@@ -54,14 +52,11 @@ for (let i = 0; i < boardSize; i++) {
 }
 
 // Calculate the postion point that near the click
-//**RECALCULATE THE POSITION */
 chessboard.addEventListener('click', (event) => {
     const rect = chessboard.getBoundingClientRect();
     const x = event.clientX - rect.left-135.5;
     const y = event.clientY - rect.top-34;
     
-
-   
     // Find the nearest grid position
     const gridX = Math.round(x / gridSpacing);
     const gridY = Math.round(y / gridSpacing);
@@ -77,7 +72,6 @@ chessboard.addEventListener('click', (event) => {
         if(!checkWinner(gridX,gridY)){
           togglePlayer();
         }
-        
     }else{
         alert("This grid is occupied! Try again.");
     }
@@ -121,7 +115,6 @@ function checkWinner(gridX,gridY) {
   }
 
   if(count == 5){
-    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
@@ -133,10 +126,8 @@ function checkWinner(gridX,gridY) {
   x = gridX;  
   y = gridY-1;
   while(y>=0 && boardState[x][y]==currentPlayer){
-    
       count++;
       y--;
-    
   }
     y = gridY+1;
   while(y<boardSize && boardState[x][y]==currentPlayer){
@@ -144,7 +135,6 @@ function checkWinner(gridX,gridY) {
       y++;
   }
   if(count == 5){
-    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
@@ -157,7 +147,6 @@ function checkWinner(gridX,gridY) {
   y = gridY-1;
 
   while(x>=0 && y>=0 && boardState[x][y]==currentPlayer){
-    
       count++;
       y--;
       x--;
@@ -166,14 +155,12 @@ function checkWinner(gridX,gridY) {
   x = gridX+1;  
   y = gridY+1;
   while(x<boardSize && y<boardSize && boardState[x][y]==currentPlayer){
-    
       count++;
       y++;
       x++;
    
   }
   if(count == 5){
-    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
@@ -186,22 +173,19 @@ function checkWinner(gridX,gridY) {
   y = gridY+1;
 
   while(x>=0 && y<boardSize && boardState[x][y]==currentPlayer){
-   
       count++;
       y++;
       x--;
-    
   }
   x = gridX+1;  
   y = gridY-1;
   while(x<boardSize && y>=0 && boardState[x][y]==currentPlayer){
-    
       count++;
       y--;
       x++;
   }
+  
   if(count == 5){
-    //alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
@@ -213,15 +197,3 @@ function checkWinner(gridX,gridY) {
 
 }
 
-function restartGame(){
-  gameover = false;
-  currentPlayer = "Black";
-  for (let i = 0; i < boardSize; i++) {
-    boardState[i] = Array(boardSize).fill(null);
-  }
-  document.getElementById('currentPlayer').textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
-
-  const stones = document.querySelectorAll('.stone');
-  stones.forEach(stone => stone.remove());
-
-}
