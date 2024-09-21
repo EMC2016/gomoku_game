@@ -26,8 +26,7 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 - **Two-Player Local Gameplay**: Play with a friend on the same device.
 - **Intuitive GUI**: Easy-to-use graphical user interface.
 - **Winning Highlight**: Highlights the winning sequence of stones.
-- **Undo Move**: Allows players to undo the last move. (Waiting for Development)
-- **Restart Game**: Option to restart the game at any time. (Waiting for Development)
+- **Restart Game**: Option to restart the game at any time. 
 - **Responsive Design**: Adjusts to different screen sizes. 
 - **Cross-Platform Compatibility**: Runs on any modern web browser.
 
