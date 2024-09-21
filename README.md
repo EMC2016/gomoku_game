@@ -167,7 +167,7 @@ This project is licensed under the MIT License.
 
 ## Authors
 
-- **Emma Chen** - *Developer* - [YourGitHubUsername](https://github.com/EMC2016)
+- **Emma Chen** - *Developer* - [EMC2016](https://github.com/EMC2016)
 
 
 
