@@ -114,7 +114,7 @@ function checkWinner(gridX,gridY) {
       x++;
   }
 
-  if(count == 5){
+  if(count >= 5){
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
@@ -134,7 +134,7 @@ function checkWinner(gridX,gridY) {
       count++;
       y++;
   }
-  if(count == 5){
+  if(count >= 5){
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
@@ -160,7 +160,7 @@ function checkWinner(gridX,gridY) {
       x++;
    
   }
-  if(count == 5){
+  if(count >= 5){
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
@@ -185,7 +185,7 @@ function checkWinner(gridX,gridY) {
       x++;
   }
   
-  if(count == 5){
+  if(count >= 5){
     gameover = true;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
