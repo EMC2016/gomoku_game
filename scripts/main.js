@@ -22,19 +22,7 @@ restartbutton.onclick = () =>{
   restartGame();
 };
 
-// Set status to initial status, restart the game
-function restartGame(){
-  gameover = false;
-  currentPlayer = "Black";
-  for (let i = 0; i < boardSize; i++) {
-    boardState[i] = Array(boardSize).fill(null);
-  }
-  document.getElementById('currentPlayer').textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
-  
-  const stones = document.querySelectorAll('.stone');
-  stones.forEach(stone => stone.remove());
 
-}
 
   // Variables to track game state
 let currentPlayer = 'black'; // Start with black
@@ -69,7 +57,10 @@ chessboard.addEventListener('click', (event) => {
      // Check if the position is already occupied
     if (boardState[gridX][gridY] === null ) {
         placeStone(gridX, gridY);
+        console.log("Place the stone.");
+
         if(!checkWinner(gridX,gridY)){
+          console.log("Toggle the player.");
           togglePlayer();
         }
     }else{
@@ -96,6 +87,7 @@ function placeStone(gridX, gridY) {
 function togglePlayer() {
     currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
     currentPlayerElement.textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
+    console.log(currentPlayer);
 }
 
   
@@ -194,6 +186,21 @@ function checkWinner(gridX,gridY) {
   }
 
   return gameover;
+
+}
+
+// Set status to initial status, restart the game
+function restartGame(){
+  gameover = false;
+  currentPlayer = 'black';
+  for (let i = 0; i < boardSize; i++) {
+    boardState[i] = Array(boardSize).fill(null);
+  }
+  document.getElementById('currentPlayer').textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
+  
+  const stones = document.querySelectorAll('.stone');
+  stones.forEach(stone => stone.remove());
+  console.log("Restart the game.");
 
 }
 
