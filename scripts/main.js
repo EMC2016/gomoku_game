@@ -1,32 +1,28 @@
 
+//Setup heading words
 const myHeading = document.querySelector("h1");
 myHeading.textContent = "Gomoku World";
 
-
+//Set user name on event 'login'
 let loginbutton = document.getElementById('login');
-
 loginbutton.onclick = () => {
     setUserName();
   };
 
-function setUserName() {
-    const myName = prompt("Please enter your name.");
-    localStorage.setItem("name", myName);
-    myHeading.textContent = `Gomoku is cool, ${myName}`;
-  }
 
+//Restart game on event 'restart'
 let restartbutton = document.getElementById('restart');
 let gameover = false;
-
 restartbutton.onclick = () =>{
   restartGame();
 };
 
 
-
-  // Variables to track game state
+//**START GAME */
+// Variables to track game state
 let currentPlayer = 'black'; // Start with black
 let boardState = []; // Store the state of the board
+let winner = 'null';
 
 // Select necessary DOM elements
 const chessboard = document.getElementById('chessboard');
@@ -39,8 +35,48 @@ for (let i = 0; i < boardSize; i++) {
     boardState[i] = Array(boardSize).fill(null);
 }
 
-// Calculate the postion point that near the click
+
+// Initial time in seconds (10 minutes)
+let initialTime = 600;
+
+// Player times
+let player1Time = initialTime;
+let player2Time = initialTime;
+
+
+// Interval IDs for timers
+let player1Interval = null;
+let player2Interval = null;
+
+// HTML elements
+const player1TimeDisplay = document.getElementById('player1-time');
+const player2TimeDisplay = document.getElementById('player2-time');
+const player1TimerDiv = document.getElementById('black-timer');
+const player2TimerDiv = document.getElementById('white-timer');
+
+// Update the initial time displays
+player1TimeDisplay.textContent = formatTime(player1Time);
+player2TimeDisplay.textContent = formatTime(player2Time);
+
+
+//Start game on event 'restart'
+let startbutton = document.getElementById('start');
+
+startbutton.onclick = () =>{
+  alert("Game is to begin! Black first.");
+
+  startPlayerTimer(currentPlayer);
+};
+
+
+// Calculate the postion point on event 'click'
 chessboard.addEventListener('click', (event) => {
+
+    // Check if game is over
+    if(gameover){
+      alert("Game is over! Winner is "+winner.charAt(0).toUpperCase() + winner.slice(1)+"!");
+      return;
+    }
     const rect = chessboard.getBoundingClientRect();
     const x = event.clientX - rect.left-135.5;
     const y = event.clientY - rect.top-34;
@@ -49,11 +85,7 @@ chessboard.addEventListener('click', (event) => {
     const gridX = Math.round(x / gridSpacing);
     const gridY = Math.round(y / gridSpacing);
     
-    // Check if game is over
-    if(gameover){
-      alert("Game is over! Winner is "+currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)+"!");
-      return;
-    }
+    
      // Check if the position is already occupied
     if (boardState[gridX][gridY] === null ) {
         placeStone(gridX, gridY);
@@ -67,6 +99,13 @@ chessboard.addEventListener('click', (event) => {
         alert("This grid is occupied! Try again.");
     }
 });
+
+//Function to set user name
+function setUserName() {
+  const myName = prompt("Please enter your name.");
+  localStorage.setItem("name", myName);
+  myHeading.textContent = `Gomoku is cool, ${myName}`;
+}
 
 // Function to place a stone at a given grid position
 function placeStone(gridX, gridY) {
@@ -87,6 +126,8 @@ function placeStone(gridX, gridY) {
 function togglePlayer() {
     currentPlayer = currentPlayer === 'black' ? 'white' : 'black';
     currentPlayerElement.textContent = currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1);
+    highlightCurrentPlayer(currentPlayer);
+    startPlayerTimer(currentPlayer);
     console.log(currentPlayer);
 }
 
@@ -107,7 +148,8 @@ function checkWinner(gridX,gridY) {
   }
 
   if(count >= 5){
-    gameover = true;
+    endGame();
+    winner = currentPlayer;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
@@ -127,7 +169,8 @@ function checkWinner(gridX,gridY) {
       y++;
   }
   if(count >= 5){
-    gameover = true;
+    endGame();
+    winner = currentPlayer;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
@@ -153,7 +196,8 @@ function checkWinner(gridX,gridY) {
    
   }
   if(count >= 5){
-    gameover = true;
+    endGame();
+    winner = currentPlayer;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
@@ -178,7 +222,8 @@ function checkWinner(gridX,gridY) {
   }
   
   if(count >= 5){
-    gameover = true;
+    endGame();
+    winner = currentPlayer;
     setTimeout(function() {
       alert(currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1) + " wins!");
     }, 200);
@@ -192,6 +237,7 @@ function checkWinner(gridX,gridY) {
 // Set status to initial status, restart the game
 function restartGame(){
   gameover = false;
+  winner = 'null';
   currentPlayer = 'black';
   for (let i = 0; i < boardSize; i++) {
     boardState[i] = Array(boardSize).fill(null);
@@ -200,7 +246,85 @@ function restartGame(){
   
   const stones = document.querySelectorAll('.stone');
   stones.forEach(stone => stone.remove());
+  player1Time = initialTime;
+  player2Time = initialTime;
+  player1TimeDisplay.textContent = formatTime(player1Time);
+  player2TimeDisplay.textContent = formatTime(player2Time);
+
+  alert("Game is to restart! Black first.");
+  startPlayerTimer(currentPlayer);
   console.log("Restart the game.");
 
+}
+
+
+// Function to format time in MM:SS
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+// Function to start the timer for the current player
+function startPlayerTimer(player) {
+  stopAllTimers(); // Ensure other timers are stopped
+
+  if (player === "black") {
+      highlightCurrentPlayer(player);
+
+      player1Interval = setInterval(() => {
+          player1Time--;
+          player1TimeDisplay.textContent = formatTime(player1Time);
+
+          if (player1Time <= 0) {
+              clearInterval(player1Interval);
+              winner = 'white';
+              alert('Black has run out of time. White wins!');
+              endGame();
+          }
+      }, 1000);
+  } else{
+      highlightCurrentPlayer(player);
+
+      player2Interval = setInterval(() => {
+          player2Time--;
+          player2TimeDisplay.textContent = formatTime(player2Time);
+
+          if (player2Time <= 0) {
+              clearInterval(player2Interval);
+              winner = 'black';
+              alert('White has run out of time. Black wins!');
+              endGame();
+          }
+      }, 1000);
+  }
+}
+
+// Function to stop all timers
+function stopAllTimers() {
+  clearInterval(player1Interval);
+  clearInterval(player2Interval);
+  player1Interval = null;
+  player2Interval = null;
+}
+
+// Function to highlight the current player
+function highlightCurrentPlayer(player) {
+  if (player === 'black') {
+      player1TimerDiv.classList.add('current-player');
+      player2TimerDiv.classList.remove('current-player');
+  } else {
+      player2TimerDiv.classList.add('current-player');
+      player1TimerDiv.classList.remove('current-player');
+  }
+}
+
+
+// Function to handle game end
+function endGame() {
+  gameover = true;
+  console.log(winner);
+  stopAllTimers();
+  
 }
 

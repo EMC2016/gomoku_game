@@ -69,6 +69,19 @@
         cursor: pointer;
         }
 
+        #start {
+        position: absolute;   /* Enables absolute positioning */
+        top: 20px;            /* Distance from the top of the page */
+        right: 220px;          /* Distance from the right edge of the page */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #1c441d;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
         #turnIndicator {
         position: absolute;
         top: 20px;
@@ -81,9 +94,41 @@
         border-radius: 5px;
       }
 
+        #black-timer {
+          position: absolute;
+          top: 450px;
+          left: 230px;
+          margin: 0;
+          padding: 15px;
+          font-size: 20px;
+          background-color: #084573b7;
+          color: white;
+          border-radius: 5px;
+      }
+
+        #white-timer {
+          position: absolute;
+          top: 450px;
+          right: 230px;
+          margin: 0;
+          padding: 15px;
+          font-size: 20px;
+          background-color: #084573b7;
+          color: white;
+          border-radius: 5px;
+      }
+
+      #black-timer.current-player,
+      #white-timer.current-player {
+          color: rgb(208, 17, 17);
+      }
+        
 
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+    <script src="scripts/main.js" defer></script>
+
   </head>
   
   <body>
@@ -93,9 +138,15 @@
     <h4>The objective is to be the first to form an unbroken line of five stones, either horizontally, vertically, or diagonally. Have fun!</h4>
     <button id = "login">Log In</button>
     <button id = "restart">Restart</button>
+    <button id = "start">Start</button>
+    <div id="black-timer" class="timer">
+        Black Time: <span id="player1-time">10:00</span>
+    </div>
+    <div id="white-timer" class="timer">
+        White Time: <span id="player2-time">10:00</span>
+    </div>
     
     <div class="chessboard-container" id="chessboard"></div>
     <p id="turnIndicator">Current Turn: <span id="currentPlayer">Black</span></p></div>
-    <script src="scripts/main.js"></script>
   </body>
 </html>

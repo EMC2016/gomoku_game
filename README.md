@@ -26,6 +26,7 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
 - **Two-Player Local Gameplay**: Play with a friend on the same device.
 - **Intuitive GUI**: Easy-to-use graphical user interface.
 - **Winning Highlight**: Highlights the winning sequence of stones.
+- **Timer** :Each player has 10 minutes to play.
 - **Restart Game**: Option to restart the game at any time. 
 - **Responsive Design**: Adjusts to different screen sizes. 
 - **Cross-Platform Compatibility**: Runs on any modern web browser.
@@ -99,6 +100,7 @@ Welcome to the **Gomoku Game - Two Player Edition**! This is a classic board gam
   - Players take turns clicking on an empty grid cell to place their stone.
 - **Winning the Game**:
   - The first player to align five stones horizontally, vertically, or diagonally wins.
+  - The player wins whose rival reaches the time limit.
 <!--
 - **Undo Move**: Click the 'Undo' button to revert the last move.
 - **Restart Game**: Click the 'Restart' button to start a new game.
